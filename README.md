@@ -69,23 +69,25 @@ The Idea/Thinking:
 2. Give it a name, select "**RSA**", "**.pem**".
 3. Then based on the state of your EC2, do one of the following:
 
-### Add Cert to new EC2
+### OPTION 1 - Add Cert to new EC2
 <details>
   <summary><i>(view Steps)</i></summary>
-  1. When you launch the new EC2 instance, there will be an option there to assign it to a cert.
-  <img alt="screenshot of the assigning key at launch" src="./images/8.Assigning-key-pair.png" width="100%"/>
-  2. Then when you launch it, will always shown "**Key pair assigned at launch**".
-  <img alt="screenshot of the key assigned at launch" src="./images/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/>
+  <ol>
+  <li>1. When you launch the new EC2 instance, there will be an option there to assign it to a cert.
+  <img alt="screenshot of the assigning key at launch" src="./images/8.Assigning-key-pair.png" width="100%"/></li>
+  <li>Then when you launch it, will always shown "**Key pair assigned at launch**".
+  <img alt="screenshot of the key assigned at launch" src="./images/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/></li>
+  </ol>
 </details>
 
-### Add Cert to existing EC2
+### OPTION 2a - Add Cert to existing EC2
 <details>
   <summary><i>(view Steps)</i></summary>
   1. SSH into it using the key it already supports (if applicable)
   2. Add new .pem cert to _________
 </details>
 
-### SITUATION: How to add if you deleted old SSH cert
+### OPTION 2b - Add Cert to existing EC2 if you deleted old SSH cert
 <details>
   <summary><i>(view Steps)</i></summary>
   Either clone it via AMI or detach EBS by doing ________
