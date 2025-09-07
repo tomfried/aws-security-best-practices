@@ -25,44 +25,55 @@ While still on the "[Security Credentials page](https://console.aws.amazon.com/i
 </details>
 
 ## 3. Setup CloudTrail to Track/Record Account Activity
-1. Navigate to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.
-2. Select "**Create Trail**"
-3. Give it name, ex "management-events"
-4. Create new S3 bucket to store the logs
-5. **Save** then can see all actions that happen on your account whenever you return back to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.
-<details>
-  <summary><i>(view Screenshot)</i></summary>
-  Example after doing a few things:
-  <img alt="screenshot of CloudTrail home page and events showing up" src="./images/7.CloudTrail.png" width="100%"/>
-</details>
+<ol>
+<li>Navigate to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.</li>
+<li>Select "**Create Trail**"</li>
+<li>Give it name, ex "management-events"</li>
+<li>Create new S3 bucket to store the logs</li>
+<li>**Save** then can see all actions that happen on your account whenever you return back to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.
+  <details>
+    <summary><i>(view Screenshot)</i></summary>
+    Example after doing a few things:
+    <img alt="screenshot of CloudTrail home page and events showing up" src="./images/7.CloudTrail.png" width="100%"/>
+  </details>
+</li>
+</ol>
 
 ## 4. Create IAMM Role for all dev/IT work
 The Idea/Thinking:
 - **Root User** - will have access to billing, route53, control of users, and literally everything else but won't have keys setup to SSH into your EC2 resources.
 - **IAM User** - will be the only account you ever use regularly and is the account that will have SSH access to the EC2 resources.
 
-1. Go to "[AWS IAM](https://console.aws.amazon.com/iam/home#/groups)" > **User Groups** > then "**Create Group**".
-2. Call it ex. "EC2PowerUser"
-3. Add Permissions:
-  - AmazonEC2FullAccess
-  - EC2InstanceConnect
-4. Then "**Create new [IAM User](https://console.aws.amazon.com/iam/home#/users)**"
-5. Assign user to the group you made, ex: "EC2PowerUser"
-6. After saving, grant user console access so they can turn on/off the EC2 instances when needed BUT be sure to **select that the password must change on login**.
+<ol>
+<li>Go to "[AWS IAM](https://console.aws.amazon.com/iam/home#/groups)" > **User Groups** > then "**Create Group**".</li>
+<li>Call it ex. "EC2PowerUser"</li>
+<li>Add Permissions:
+  <ul>
+    <li>AmazonEC2FullAccess</li>
+    <li>EC2InstanceConnect</li>
+  </ul>
+</li>
+<li>Then "**Create new [IAM User](https://console.aws.amazon.com/iam/home#/users)**"</li>
+<li>Assign user to the group you made, ex: "EC2PowerUser"</li>
+<li>After saving, grant user console access so they can turn on/off the EC2 instances when needed BUT be sure to **select that the password must change on login**.
   <details>
     <summary><i>(view Screenshot)</i></summary>
     <img alt="screenshot of enabling console access to IAM user" src="./images/4.Enabling-Console-Access-to-User.png" width="75%"/>
   </details>
-7. Then give the user (if not yourself) the credentials.
+</li>
+<li>Then give the user (if not yourself) the credentials.
   <details>
     <summary><i>(view Screenshot)</i></summary>
     <img alt="screenshot of saving off password and other login info for user" src="./images/5.Saving-Password-And-Login-Information-to-give-user.png" width="75%"/>
   </details>
-8. "**If it is yourself**", then setup Multi-Factor-Authentication for this user too. Ex. both for the most common computer used and on an authenticator app.
+</li>
+<li>"**If it is yourself**", then setup Multi-Factor-Authentication for this user too. Ex. both for the most common computer used and on an authenticator app.
   <details>
     <summary><i>(view Screenshot)</i></summary>
     <img alt="screenshot of setting up MFA for the new IAM user if that user is also you" src="./images/6.Setting-up-MFA-for-IAM-user-if-self.png" width="100%"/>
   </details>
+</li>
+</ol>
 
 ## 5. Create Key Pair for EC2 for IAM user
 1. Go to **Key Pairs**, then select to create one.
@@ -73,7 +84,7 @@ The Idea/Thinking:
 <details>
   <summary><i>(view Steps)</i></summary>
   <ol>
-  <li>1. When you launch the new EC2 instance, there will be an option there to assign it to a cert.
+  <li>When you launch the new EC2 instance, there will be an option there to assign it to a cert.
   <img alt="screenshot of the assigning key at launch" src="./images/8.Assigning-key-pair.png" width="100%"/></li>
   <li>Then when you launch it, will always shown "**Key pair assigned at launch**".
   <img alt="screenshot of the key assigned at launch" src="./images/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/></li>
