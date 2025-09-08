@@ -21,28 +21,26 @@ https://console.aws.amazon.com/iam/home#security_credential
 </ol>
 
 ## 2. Add Alternate Security Contact <strong>(Cost: <i>FREE</i>)</strong>
-<p>Under <b>Billing and Cost Management > "Account"</b> It is strongly recommended by AWS that you add a "alternate security contact" to respond in the event of a breach or other security problem.
+Under "<b>Billing and Cost Management</b>" open "<b><a href="http://console.aws.amazon.com/billing/home#account">Account</a></b>". It is strongly recommended by AWS that you add a "alternate security contact" to respond in the event of a breach or other security problem.
   <details>
     <summary><i>(view Screenshot)</i></summary>
     <img alt="screenshot of alternate contact section with security contact filled out" src="./images/10.Account-section-with-security-contact-filled-out.png"/>
   </details>
-</p>
 
 ## 3. Setup MFA (Multi-Factor Authentication) <strong>(Cost: <i>FREE</i>)</strong>
-<p>While still on the "[Security Credentials page](https://console.aws.amazon.com/iam/home#security_credential)" setup 1.) both a <b>Passkey</b> for the computer you used most and 2.) MFA through the "Google <b>Authenticator app</b>" or similar".
+While still on the "[Security Credentials page](https://console.aws.amazon.com/iam/home#security_credential)" setup 1.) both a <b>Passkey</b> for the computer you used most and 2.) MFA through the "Google <b>Authenticator app</b>" or similar".
   <details>
     <summary><i>(view Screenshot)</i></summary>
     <img alt="screenshot of MFAs setup" src="./images/3.Screenshot-of-MFAs.png"/>
   </details>
-</p>
 
 ## 4. Setup CloudTrail to Track/Record Account Activity <strong>(Cost: <i>FREE for logging in/doing actions <4999 times/month</i>)</strong>
 <ol>
-  <li>Navigate to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.</li>
+  <li>Navigate to <b><a href="https://console.aws.amazon.com/cloudtrail">AWS CloudTrail</a></b>.</li>
   <li>Select "<b>Create Trail</b>"</li>
   <li>Give it name, ex "management-events"</li>
   <li>Create new S3 bucket to store the logs</li>
-  <li><b>Save</b> then can see all actions that happen on your account whenever you return back to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.
+  <li><b>Save</b> then can see all actions that happen on your account whenever you return back to <a href="https://console.aws.amazon.com/cloudtrail">AWS CloudTrail</a>.
     <details>
       <summary><i>(view Screenshot)</i></summary>
       Example after doing a few things:
@@ -57,7 +55,7 @@ The Idea/Thinking:
 - **IAM User** - will be the only account you ever use regularly and is the account that will have SSH access to the EC2 resources.
 
 <ol>
-<li>Go to "<b>[AWS IAM](https://console.aws.amazon.com/iam/home#/groups)</b>" > <b>User Groups</b> > then "<b>Create Group</b>".</li>
+<li>Go to "<b><a href="https://console.aws.amazon.com/iam/home#/groups">AWS IAM</a></b>" > <b>User Groups</b> > then "<b>Create Group</b>".</li>
 <li>Call it ex. "EC2PowerUser"</li>
 <li>Add Permissions:
   <ul>
