@@ -1,7 +1,7 @@
 # AWS Best Practices
 For all new and existing AWS projects, the following are the minimum best practices I can think for access.
 
-## 1. Immediately Remove Access Key
+## 1. Immediately Remove Access Key <strong>(Cost: <i>FREE</i>)</strong>
 When you first create an account, if it creates an access key, delete it at:
 https://console.aws.amazon.com/iam/home#security_credential
 
@@ -20,14 +20,23 @@ https://console.aws.amazon.com/iam/home#security_credential
   </li>
 </ol>
 
-## 2. Setup MFA (Multi-Factor Authentication)
-While still on the "[Security Credentials page](https://console.aws.amazon.com/iam/home#security_credential)" setup 1.) both a <b>Passkey</b> for the computer you used most and 2.) MFA through the "Google <b>Authenticator app</b>" or similar".
-<details>
-  <summary><i>(view Screenshot)</i></summary>
-  <img alt="screenshot of MFAs setup" src="./images/3.Screenshot-of-MFAs.png"/>
-</details>
+## 2. Add Alternate Security Contact <strong>(Cost: <i>FREE</i>)</strong>
+<p>Under <b>Billing and Cost Management > "Account"</b> It is strongly recommended by AWS that you add a "alternate security contact" to respond in the event of a breach or other security problem.
+  <details>
+    <summary><i>(view Screenshot)</i></summary>
+    <img alt="screenshot of alternate contact section with security contact filled out" src="./images/10.Account-section-with-security-contact-filled-out.png"/>
+  </details>
+</p>
 
-## 3. Setup CloudTrail to Track/Record Account Activity
+## 3. Setup MFA (Multi-Factor Authentication) <strong>(Cost: <i>FREE</i>)</strong>
+<p>While still on the "[Security Credentials page](https://console.aws.amazon.com/iam/home#security_credential)" setup 1.) both a <b>Passkey</b> for the computer you used most and 2.) MFA through the "Google <b>Authenticator app</b>" or similar".
+  <details>
+    <summary><i>(view Screenshot)</i></summary>
+    <img alt="screenshot of MFAs setup" src="./images/3.Screenshot-of-MFAs.png"/>
+  </details>
+</p>
+
+## 4. Setup CloudTrail to Track/Record Account Activity <strong>(Cost: <i>FREE for logging in/doing actions <4999 times/month</i>)</strong>
 <ol>
   <li>Navigate to **[AWS CloudTrail](https://console.aws.amazon.com/cloudtrail)**.</li>
   <li>Select "<b>Create Trail</b>"</li>
@@ -42,7 +51,7 @@ While still on the "[Security Credentials page](https://console.aws.amazon.com/i
   </li>
 </ol>
 
-## 4. Create IAMM Role for all dev/IT work
+## 5. Create IAM Role for all dev/IT work <strong>(Cost: <i>FREE</i>)</strong>
 The Idea/Thinking:
 - **Root User** - will have access to billing, route53, control of users, and literally everything else but won't have keys setup to SSH into your EC2 resources.
 - **IAM User** - will be the only account you ever use regularly and is the account that will have SSH access to the EC2 resources.
@@ -78,7 +87,7 @@ The Idea/Thinking:
 </li>
 </ol>
 
-## 5. Create Key Pair for EC2 for IAM user
+## 6. Create Key Pair for EC2 for IAM user <strong>(Cost: <i>FREE</i>)</strong>
 1. Go to **Key Pairs**, then select to create one.
 2. Give it a name, select "**RSA**", "**.pem**".
 3. Then based on the state of your EC2, do one of the following:
@@ -89,7 +98,7 @@ The Idea/Thinking:
   <ol>
     <li>When you launch the new EC2 instance, there will be an option there to assign it to a cert.
     <img alt="screenshot of the assigning key at launch" src="./images/8.Assigning-key-pair.png" width="100%"/></li>
-    <li>Then when you launch it, will always shown "<b>Key pair assigned at launch</b>".
+    <li>Then when you launch it, it will always be shown under: "<b>Key pair assigned at launch</b>".
     <img alt="screenshot of the key assigned at launch" src="./images/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/></li>
   </ol>
 </details>
@@ -97,8 +106,10 @@ The Idea/Thinking:
 ### OPTION 2a - Add Cert to existing EC2
 <details>
   <summary><i>(view Steps)</i></summary>
-  1. SSH into it using the key it already supports (if applicable)
-  2. Add new .pem cert to _________
+  <ol>
+    <li>SSH into it using the key it already supports (if applicable)</li>
+    <li>Add new .pem cert to _________</li>
+  </ol>
 </details>
 
 ### OPTION 2b - Add Cert to existing EC2 if you deleted old SSH cert
@@ -106,3 +117,12 @@ The Idea/Thinking:
   <summary><i>(view Steps)</i></summary>
   Either clone it via AMI or detach EBS by doing ________
 </details>
+
+## 7. Setup Cloudwatch to Email you alerts
+Ideally, because you will only ever be using the IAM user (NOT the root user account) for daily things, setup a [Cloudwatch alert](http://console.aws.amazon.com/cloudwatch) for any login and/or also the more severe actions on the root user. If you need to log in for checking billing or setting up new IAM users, it's all fine and good, you just will get an email each time so you know 100% every time there is something truly suspicious.
+
+## 8. *OPTIONAL* Enable AWS GuardDuty <strong>(Cost: NOT Free)</strong>
+[GuardDuty](http://console.aws.amazon.com/guardduty) monitors threats against everything but to save cost you can set it up for just your Amazon Simple Storage Service (Amazon S3) resources. If enabled it will analyze CloudTrail management events and CloudTrail S3 data events, monitoring access, and activity in your S3 buckets for malicious files being added or anything else suspicious.
+
+## 9. Lock down all EC2s to be within a VPC
+TBD
