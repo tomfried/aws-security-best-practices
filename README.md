@@ -1,5 +1,5 @@
 # AWS Best Practices
-For all new and existing AWS projects, the following are the minimum best practices I can think for access.
+For all new and existing AWS projects, the following are the minimum best practices I can think you should do to prevent bad cyber actors from intruding.
 
 ## 1. Immediately Remove Access Key <strong>(Cost: <i>FREE</i>)</strong>
 When you first create an account, if it creates an access key, delete it at:
@@ -125,3 +125,24 @@ Ideally, because you will only ever be using the IAM user (NOT the root user acc
 
 ## 9. Lock down all EC2s to be within a VPC
 TBD
+
+## 10. Randomize S3 bucket names to prevent Exhaustion Attacks
+Even if your S3 is private, if a cyber actor can guess the name of your bucket, they can try hitting it millions of times and YOU will be charged for the access denied message. You are only not charged when they get blatent 404 error because they are hitting a bunch of nothing. As such it is recommended that if you use S3 to give it a random or long/complicated bucket name.
+
+Example, if an attacker automates hitting your standard S3 bucket <b>1 million times</b> in a month, it will cost you <b>$10,000</b>.
+
+**Another option**, is for any anonymous bucket is to enable "Requestor Pays" so it charges them instead for failed requests. To do this:
+<ol><li>Navigate to S3 then "<b>Properties</b>" tab.
+  <details>
+    <summary><i>(view Screenshot)</i></summary>
+    <img alt="screenshot of the properties tab of S3" src="./images/11.Navigating-to-s3-properties.png"/>
+  </details>
+</li>
+<li>Then scroll down until you find the "Requestor Pays" section and enable it.
+  <details>
+    <summary><i>(view Screenshot)</i></summary>
+    <img alt="screenshot of enabling Requestor pays" src="./images/12.Request-Pays-section-of-s3.png"/>
+  </details>
+</li>
+<li>Then enable this for all of your S3 instances that shouldn't support anonymous access</li>
+</ol>
