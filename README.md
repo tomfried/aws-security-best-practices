@@ -63,7 +63,7 @@ The Idea/Thinking:
     <li>EC2InstanceConnect</li>
   </ul>
 </li>
-<li>Then "<b>Create new [IAM User](https://console.aws.amazon.com/iam/home#/users)</b>"</li>
+<li>Then "<b>Create new <a href="https://console.aws.amazon.com/iam/home#/users">IAM User</a></b>"</li>
 <li>Assign user to the group you made, ex: "EC2PowerUser"</li>
 <li>After saving, grant user console access so they can turn on/off the EC2 instances when needed BUT be sure to <b>select that the password must change on login</b>.
   <details>
@@ -87,8 +87,9 @@ The Idea/Thinking:
 
 ## 6. Create Key Pair for EC2 for IAM user <strong>(Cost: <i>FREE</i>)</strong>
 1. Go to **Key Pairs**, then select to create one.
-2. Give it a name, select "**RSA**", "**.pem**".
-3. Then based on the state of your EC2, do one of the following:
+2. Give it a name, select "**RSA**" and "**.pem**".
+3. When it downloads DO NOT LOSE IT! You cannot download it again.
+4. Then based on the state of your EC2, do one of the following:
 
 ### OPTION 1 - Add Cert to new EC2
 <details>
