@@ -131,7 +131,7 @@ Even if your S3 is private, if a cyber actor can guess the name of your bucket, 
 
 Example, if an attacker automates hitting your standard S3 bucket <b>1 million times</b> in a month, it will cost you <b>$10,000</b>.
 
-**Another option**, is for any anonymous bucket is to enable "Requestor Pays" so it charges them instead for failed requests. To do this:
+**Another option to help slightly**, is for any anonymous bucket is to enable "Requestor Pays" so if it is not an anonymous bot and a big corporate power that is authenticated, they instead get charged instead for failed requests. To do that:
 <ol><li>Navigate to S3 then "<b>Properties</b>" tab.
   <details>
     <summary><i>(view Screenshot)</i></summary>
