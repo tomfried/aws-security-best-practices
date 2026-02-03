@@ -1,5 +1,5 @@
-# AWS Best Practices
-For all new and existing AWS projects, the following are the minimum best practices I can think you should do to prevent bad cyber actors from intruding.
+# AWS BASE Security Best Practices - 2026
+I am not an AWS employee, I just wanted to share to the best of my knowledge for all new and existing AWS projects, the minimum best practices I can think of you should do to fight against malicious cyber actors that may corrupt, intrude, or attack your system.
 
 ## 1. Immediately Remove Access Key <strong>(Cost: <i>FREE</i>)</strong>
 When you first create an account, if it creates an access key, delete it at:
@@ -9,13 +9,13 @@ https://console.aws.amazon.com/iam/home#security_credential
   <li>If link does not work, this is found under the user link in the header then selecting "<b>Security Credentials</b>".
     <details>
       <summary><i>(view Screenshot)</i></summary>
-      <img alt="screenshot of how to navigate to security credentials" src="./images/1.Navigating-to-Security-Credentials.png" width="50%"/>
+      <img alt="screenshot of how to navigate to security credentials" src="./images/base_security/1.Navigating-to-Security-Credentials.png" width="50%"/>
     </details>
   </li>
   <li>Then go down to AWS "<b>Access Keys</b>" and ensure it is deleted (if one was made automatically).
     <details>
       <summary><i>(view Screenshot)</i></summary>
-      <img alt="screenshot of Access Keys section" src="./images/2.Access-Keys-section.png"/>
+      <img alt="screenshot of Access Keys section" src="./images/base_security/2.Access-Keys-section.png"/>
     </details>
   </li>
 </ol>
@@ -24,14 +24,14 @@ https://console.aws.amazon.com/iam/home#security_credential
 Under "<b>Billing and Cost Management</b>" open "<b><a href="http://console.aws.amazon.com/billing/home#account">Account</a></b>". It is strongly recommended by AWS that you add a "alternate security contact" to respond in the event of a breach or other security problem.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of alternate contact section with security contact filled out" src="./images/10.Account-section-with-security-contact-filled-out.png"/>
+    <img alt="screenshot of alternate contact section with security contact filled out" src="./images/base_security/10.Account-section-with-security-contact-filled-out.png"/>
   </details>
 
 ## 3. Setup MFA (Multi-Factor Authentication) <strong>(Cost: <i>FREE</i>)</strong>
 While still on the "[Security Credentials page](https://console.aws.amazon.com/iam/home#security_credential)" setup 1.) both a <b>Passkey</b> for the computer you used most and 2.) MFA through the "Google <b>Authenticator app</b>" or similar".
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of MFAs setup" src="./images/3.Screenshot-of-MFAs.png"/>
+    <img alt="screenshot of MFAs setup" src="./images/base_security/3.Screenshot-of-MFAs.png"/>
   </details>
 
 ## 4. Setup CloudTrail to Track/Record Account Activity <strong>(Cost: <i>FREE for logging in/doing actions <4999 times/month</i>)</strong>
@@ -44,7 +44,7 @@ While still on the "[Security Credentials page](https://console.aws.amazon.com/i
     <details>
       <summary><i>(view Screenshot)</i></summary>
       Example after doing a few things:
-      <img alt="screenshot of CloudTrail home page and events showing up" src="./images/7.CloudTrail.png" width="100%"/>
+      <img alt="screenshot of CloudTrail home page and events showing up" src="./images/base_security/7.CloudTrail.png" width="100%"/>
     </details>
   </li>
 </ol>
@@ -68,19 +68,19 @@ The Idea/Thinking:
 <li>After saving, grant user console access so they can turn on/off the EC2 instances when needed BUT be sure to <b>select that the password must change on login</b>.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of enabling console access to IAM user" src="./images/4.Enabling-Console-Access-to-User.png" width="75%"/>
+    <img alt="screenshot of enabling console access to IAM user" src="./images/base_security/4.Enabling-Console-Access-to-User.png" width="75%"/>
   </details>
 </li>
 <li>Then give the user (if not yourself) the credentials.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of saving off password and other login info for user" src="./images/5.Saving-Password-And-Login-Information-to-give-user.png" width="75%"/>
+    <img alt="screenshot of saving off password and other login info for user" src="./images/base_security/5.Saving-Password-And-Login-Information-to-give-user.png" width="75%"/>
   </details>
 </li>
 <li>"<b>If it is yourself</b>", then setup Multi-Factor-Authentication for this user too. Ex. both for the most common computer used and on an authenticator app.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of setting up MFA for the new IAM user if that user is also you" src="./images/6.Setting-up-MFA-for-IAM-user-if-self.png" width="100%"/>
+    <img alt="screenshot of setting up MFA for the new IAM user if that user is also you" src="./images/base_security/6.Setting-up-MFA-for-IAM-user-if-self.png" width="100%"/>
   </details>
 </li>
 </ol>
@@ -96,9 +96,9 @@ The Idea/Thinking:
   <summary><i>(view Steps)</i></summary>
   <ol>
     <li>When you launch the new EC2 instance, there will be an option there to assign it to a cert.
-    <img alt="screenshot of the assigning key at launch" src="./images/8.Assigning-key-pair.png" width="100%"/></li>
+    <img alt="screenshot of the assigning key at launch" src="./images/base_security/8.Assigning-key-pair.png" width="100%"/></li>
     <li>Then when you launch it, it will always be shown under: "<b>Key pair assigned at launch</b>".
-    <img alt="screenshot of the key assigned at launch" src="./images/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/></li>
+    <img alt="screenshot of the key assigned at launch" src="./images/base_security/9.Key-assigned-at-launch-showing-new-cert.png" width="100%"/></li>
   </ol>
 </details>
 
@@ -120,29 +120,39 @@ The Idea/Thinking:
 ## 7. Setup Cloudwatch to Email you alerts
 Ideally, because you will only ever be using the IAM user (NOT the root user account) for daily things, setup a [Cloudwatch alert](http://console.aws.amazon.com/cloudwatch) for any login and/or also the more severe actions on the root user. If you need to log in for checking billing or setting up new IAM users, it's all fine and good, you just will get an email each time so you know 100% every time there is something truly suspicious.
 
-## 8. *OPTIONAL* Enable AWS GuardDuty <strong>(Cost: NOT Free)</strong>
+## 8. Set up billing/budget alerts
+To catch exhaustion attacks earlier and also make sure bad actors in your account do not spin up and charge new resources without you noticing, it is recommended you also set up alerts for when projected budget at any time (if it kept at it's same pace) is expected to go beyond how much you normally pay a month.
+
+Some sophisticated adversaries like this Chinese nation state actor transferred data out at such a small amount it never triggered a single cent on the account so wouldn't have triggered an alert. As such this is not obviously fool-proof but will greatly help and can be used in conjunction with other type of alerts like if any "Data Transfer" services happen outside the U.S.
+
+## 9. *OPTIONAL* Enable AWS GuardDuty <strong>(Cost: NOT Free)</strong>
 [GuardDuty](http://console.aws.amazon.com/guardduty) monitors threats against everything but to save cost you can set it up for just your Amazon Simple Storage Service (Amazon S3) resources. If enabled it will analyze CloudTrail management events and CloudTrail S3 data events, monitoring access, and activity in your S3 buckets for malicious files being added or anything else suspicious.
 
-## 9. Lock down all EC2s to be within a VPC
+## 10. Lock down all EC2s to be within a VPC
 TBD
 
-## 10. Randomize S3 bucket names to prevent Exhaustion Attacks
-Even if your S3 is private, if a cyber actor can guess the name of your bucket, they can try hitting it millions of times and YOU will be charged for the access denied message. You are only not charged when they get blatent 404 error because they are hitting a bunch of nothing. As such it is recommended that if you use S3 to give it a random or long/complicated bucket name.
+## 11. Randomize S3 bucket names to prevent Exhaustion Attacks
+Even if your S3 is private, if a cyber actor can guess the name of your bucket, they can try hitting it millions of times and YOU will be charged for the access denied message. You are only not charged when they get blatant 404 error because they are hitting a bunch of nothing. As such it is recommended that if you use S3 and can be flexible with naming you give it a random or long/complicated bucket name.
 
 Example, if an attacker automates hitting your standard S3 bucket <b>1 million times</b> in a month, it will cost you <b>$10,000</b>.
+
+NOTE - Cloudtrail logs, route53 redirects, and some other circumstances will not allow you to change the name.
 
 **Another option to help slightly**, is for any anonymous bucket is to enable "Requestor Pays" so if it is not an anonymous bot and a big corporate power that is authenticated, they instead get charged instead for failed requests. To do that:
 <ol><li>Navigate to S3 then "<b>Properties</b>" tab.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of the properties tab of S3" src="./images/11.Navigating-to-s3-properties.png"/>
+    <img alt="screenshot of the properties tab of S3" src="./images/base_security/11.Navigating-to-s3-properties.png"/>
   </details>
 </li>
 <li>Then scroll down until you find the "Requestor Pays" section and enable it.
   <details>
     <summary><i>(view Screenshot)</i></summary>
-    <img alt="screenshot of enabling Requestor pays" src="./images/12.Request-Pays-section-of-s3.png"/>
+    <img alt="screenshot of enabling Requestor pays" src="./images/base_security/12.Request-Pays-section-of-s3.png"/>
   </details>
 </li>
 <li>Then enable this for all of your S3 instances that shouldn't support anonymous access</li>
 </ol>
+
+# 12. Route Countries with regular Malicious Actors to other resources
+Another potential method to help fight unwanted intrusions is to route all non-United States traffic or just from certain regions to another resources they can't harm. For automated bot crawling they will never see you have anything to even attack and for the manual nation state actor will have more barriers to overcome and be more expensive/slower for them assuming they found it out.
